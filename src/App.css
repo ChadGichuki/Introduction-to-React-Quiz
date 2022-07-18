@@ -7,19 +7,22 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+*/
 h3 {
   margin-left: 20px;
   margin-bottom: 0;
+  text-decoration: underline;
 }
 
 button {
   margin: 10px 0;
   padding: 5px 10px;
+  background-color: #f76cb2;
 }
 
 .wrapper {
@@ -44,6 +47,10 @@ div{
 
 ul {
   margin-top: 5px;
+}
+
+.hidden {
+  display: none;
 }
 
 

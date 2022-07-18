@@ -1,5 +1,4 @@
-import React from "react";
-import logo from './logo.svg';
+import React, {useState} from "react";
 import './App.css';
 
 /**
@@ -13,23 +12,23 @@ const users = [
 ];
 
 // comment this out after completion and uncomment code below it to proceed
-function Child() {
-  return <div>This is children content</div>;
-}
-/**
-  Challenge: Uncomment this code to complete quiz
+// function Child() {
+//   return <div>This is children content</div>;
+// }
 
-function Child() {
+//Challenge: Uncomment this code to complete quiz
+
+function Child({onChangeValue}) {
   return (
     <>
       <div>Child</div>
-      <button>Change Parent Value</button>
+      <button onClick={(e) => onChangeValue("UPDATED!")}>Change Parent Value</button>
     </>
   );
 }
 
-function Parent() {
-  const [value, setValue] = React.useState(
+function Parent(props) {
+  const [value, setValue] = useState(
     "I need to be updated from my child"
   );
 
@@ -42,36 +41,54 @@ function Parent() {
       </div>
 
       <div className="wrapper">
-        <Child />
+        <Child onChangeValue={setValue}/>
+        {props.children}
       </div>
     </>
   );
 }
-Uncomment this to tackle quiz
-**/
+// Uncomment this to tackle quiz
 
 // Comment out after completion
-function Parent() {
-  return (
-    <div>
-      <h3>Parent Component</h3>
-    </div>
-  );
-}
+// function Parent() {
+//   return (
+//     <div>
+//       <h3>Parent Component</h3>
+//     </div>
+//   );
+// }
 // Comment above code after completion
 
 function App() {
-  const [] = React.useState(true);
+  const [isDisplayed, setIsDisplayed] = useState(true)
+
+  function handleToggle(){
+    
+    const toggleElement = document.getElementById('toggle')
+    console.log(toggleElement) 
+    if (isDisplayed === true){
+      toggleElement.className = "hidden"
+    } else{
+      toggleElement.className = ""
+    }
+    
+    setIsDisplayed(!isDisplayed)
+  }
+
   return (
     
     <>
     
-    <img src={logo} className="App-logo" alt="logo" />
+    <img src="https://www.freecodecamp.org/news/content/images/size/w2000/2022/02/arnold-francisca-f77Bh3inUpE-unsplash.jpg" className="App-logo" alt="logo" />
+      <h3>JSX is cool!</h3>
       <h3>User names</h3>
+      {users.map(user => {
+        return <li key={user.id}>{user.name}</li>
+      })}
       <ul></ul>
-      <button>Hide Element Below</button>
+      <button onClick={(e) => handleToggle(e)}>Hide Element Below</button>
 
-      <div>Toggle Challenge</div>
+      <div id="toggle">Toggle Challenge</div>
       <Parent>
       <Child />
     </Parent>
